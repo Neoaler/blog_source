@@ -1,0 +1,30 @@
+- links_category: 大佬
+  has_thumbnail: false
+  list:
+      - name: kagty1
+        link: https://kagty1.github.io/
+        description: 
+        avatar: https://kagty1.github.io/images/kagty1.jpg
+        thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
+      - name: erosion2020
+        link: https://www.cnblogs.com/erosion2020
+        description: 
+        avatar: https://img.cdn1.vip/i/696cbc8e325b1_1768733838.webp
+        thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
+      - name: peiqiF4ck
+        link: https://peiqif4ck.github.io/
+        description: 
+        avatar: https://peiqif4ck.github.io/medias/avatar.jpg
+        thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
+
+# - links_category: Normal
+#   has_thumbnail: false
+#   list:
+#       - name: Example Site
+#         link: https://example.com
+#         description: Example Site Description
+#         avatar: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+#       - name: Example Site 2
+#         link: https://example.com
+#         description: Example Site Description
+#         avatar: https://www.youtube.com/watch?v=dQw4w9WgXcQ
