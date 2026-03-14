@@ -1,8 +1,10 @@
 ---
 abbrlink: ''
-categories: []
+categories:
+- - 博客配置
 date: '2026-03-14T20:33:37.257006+08:00'
-tags: []
+tags:
+- 管理后台
 title: '为 hexo 加个管理后台: hexo + github action+ vercel'
 updated: '2026-03-14T20:33:37.877+08:00'
 ---
