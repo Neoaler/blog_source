@@ -178,8 +178,8 @@ home_banner:
     links:
       - icon: github 
         url: https://github.com/Neoaler  # your GitHub URL
-      - icon: email 
-        url: mail@eval.moe
+      #- icon: email 
+      #  url: mail@eval.moe
       
       # ...... # you can add more
     # Social links with QRcode drawers
