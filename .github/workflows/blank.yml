@@ -1,50 +1,48 @@
-name: 自动部署 Hexo
+name: 自动部署hexo
 
 on:
   push:
     branches:
-      - main
+      - main # default branch
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
-
     steps:
-      - name: 开始运行
-        uses: actions/checkout@v1
-
-      - name: 设置 Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: 安装 Hexo CI
-        run: 
-          export TZ='Asia/Shanghai'
-          npm install hexo-cli -g
-
-      - name: 缓存
-        uses: actions/cache@v3
-        id: cache-dependencies
+          token: ${{ secrets.GH_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 24.14.0
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14.0"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
-
-      - name: 安装插件
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: 
-          npm install
-
-      - name: 部署博客
-        run: 
-          hexo clean && hexo g && hexo douban && gulp
-          cd ./public
-          git init
-          git config user.name "${{secrets.GIT_NAME}}"
-          git config user.email "${{secrets.GIT_EMAIL}}"
-          git add .
-          git commit -m "Update"
-          git push --force --quiet "https://${{secrets.GH_TOKEN}}@${{secrets.GH_REF}}" master:master
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
