@@ -109,7 +109,7 @@ theme: redefine
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/Neoaler/blog.git
+  repo: https://${{ secrets.GH_TOKEN }}@github.com/Neoaler/blog.git
   branch: main
   token: ${{ secrets.GH_TOKEN }}  # 使用 GitHub Token
 

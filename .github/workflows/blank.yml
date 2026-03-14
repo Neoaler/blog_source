@@ -50,13 +50,5 @@ jobs:
         git config --global init.defaultBranch main
 
     - name: 使用 Token 部署到 GitHub Pages
-      env:
-        # 将 Token 设置为环境变量
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        # 修改仓库地址为使用 token 的格式
-        cd public
-        git init
-        git add .
-        git commit -m "Site updated: $(date +'%Y-%m-%d %H:%M:%S')"
-        git push --force --quiet "https://${{ secrets.GH_TOKEN }}@github.com/Neoaler/blog.git" main:main
+        hexo g -f -d 
