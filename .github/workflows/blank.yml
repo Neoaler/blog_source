@@ -45,10 +45,9 @@ jobs:
 
     - name: Configure Git
       run: |
-        git config user.name "${{secrets.GIT_NAME}}"
-        git config user.email "${{secrets.GIT_EMAIL}}"
+        git config --global user.email "${{secrets.GIT_NAME}}"
+        git config --global user.name "${{secrets.GIT_EMAIL}}"
 
-    - name: 部署 #此处master:master 指从本地的master分支提交到远程仓库的master分支，若远程仓库没有对应分支则新建一个。如有其他需要，可以根据自己的需求更改。
+    - name: 
       run: |
-        cd ./public
         hexo g -f -d  
