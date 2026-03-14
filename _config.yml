@@ -99,19 +99,13 @@ ignore:
 theme: redefine
 
 # # Deployment
-# ## Docs: https://hexo.io/docs/one-command-deployment
-# deploy:
-#   type: git
-#   repo: git@github.com:Neoaler/blog
-#   branch: main
-
-# Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://${{ secrets.GH_TOKEN }}@github.com/Neoaler/blog.git
+  repo: git@github.com:Neoaler/blog
   branch: main
-  token: ${{ secrets.GH_TOKEN }}  # 使用 GitHub Token
+
+
 
 # Generate categories from directory-tree
 # Dependencies: https://github.com/xu-song/hexo-auto-category
