@@ -224,7 +224,7 @@ navbar:
           时间轴: /archives 
 
     碎碎念:
-      icon: fa-regular fa-message
+      icon: fa-solid fa-message
       path: /qmsg/
       
     关于: 
