@@ -17,6 +17,16 @@
         avatar: https://peiqif4ck.github.io/medias/avatar.jpg
         thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
 
+- links_category: 好朋友们
+  has_thumbnail: false
+  list:
+      - name: Viki 写东西的地方
+        link: https://blog.viki.moe
+        description: 生活需要记录。
+        avatar: https://blog.viki.moe/avatar.png
+        thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
+
+
 # - links_category: Normal
 #   has_thumbnail: false
 #   list:
