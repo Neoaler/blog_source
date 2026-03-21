@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Adm1n's Blog
+title: Nevolar's Blog
 subtitle: ''
 description: ''
 keywords:
-author: Adm1n
+author: Nevolar
 language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://blog.eval.moe
+url: https://blog.mikuwa.com
 permalink: ':year/:month/:hash.html'
 permalink_defaults:
 pretty_urls:
