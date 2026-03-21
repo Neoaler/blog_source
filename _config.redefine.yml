@@ -384,7 +384,7 @@ comment:
     # Twikoo comment system. See https://twikoo.js.org/
     twikoo:
       version: 1.6.44 # Twikoo version, do not modify if you dont know what it is
-      server_url: https://comment.eval.moe/.netlify/functions/twikoo # Twikoo server URL. e.g. https://example.example.com
+      server_url: https://comment.mikuwa.com/ # Twikoo server URL. e.g. https://example.example.com
       region: # Twikoo region. can be empty
     # Giscus comment system. See https://giscus.app/
     giscus:
