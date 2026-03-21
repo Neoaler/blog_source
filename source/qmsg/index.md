@@ -1,7 +1,7 @@
 ---
 date: '2026-03-21T15:40:02.669177+08:00'
-title: 说说
-updated: '2026-03-21T15:41:35.717+08:00'
+title: 碎碎念
+updated: '2026-03-21T15:43:13.892+08:00'
 ---
 <div id="qexot"></div>
 <script src="https://registry.npmmirror.com/qexo-static/1.6.0/files/hexo/talks.js"></script>
