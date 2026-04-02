@@ -225,7 +225,7 @@ navbar:
 
     碎碎念:
       icon: fa-solid fa-message
-      path: /qmsg/
+      path: /talks/
       
     关于: 
       icon: fa-regular fa-user
