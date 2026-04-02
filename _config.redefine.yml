@@ -438,7 +438,8 @@ inject:
     -
   # Inject custom footer html code
   footer:
-    -
+    - <script src="https://registry.npmmirror.com/qexo-static/1.6.0/files/hexo/talks.js"></script>
+    - 
 # INJECT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
 
 
