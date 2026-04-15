@@ -16,6 +16,11 @@
         description: 
         avatar: https://peiqif4ck.github.io/medias/avatar.jpg
         thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
+      - name: peiqiF4ck
+        link: https://fushuling.com/
+        description: 
+        avatar: https://peiqif4ck.github.io/medias/avatar.jpg
+        thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
 
 - links_category: 好朋友们
   has_thumbnail: false
