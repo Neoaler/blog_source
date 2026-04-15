@@ -16,11 +16,11 @@
         description: 
         avatar: https://peiqif4ck.github.io/medias/avatar.jpg
         thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
-      - name: peiqiF4ck
+      - name: 狗and猫
         link: https://fushuling.com/
-        description: 
-        avatar: https://peiqif4ck.github.io/medias/avatar.jpg
-        thumbnail: https://kagty1.github.io/images/kagty1.jpg # has_thumbnail 为 true 时才需要
+        description: 下水道玉玉阴湿老鼠人
+        avatar: https://fushuling-1309926051.cos.ap-shanghai.myqcloud.com/avatar.jpg
+        thumbnail: https://fushuling-1309926051.cos.ap-shanghai.myqcloud.com/avatar.jpg # has_thumbnail 为 true 时才需要
 
 - links_category: 好朋友们
   has_thumbnail: false
