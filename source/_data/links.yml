@@ -21,6 +21,11 @@
         description: 下水道玉玉阴湿老鼠人
         avatar: https://fushuling-1309926051.cos.ap-shanghai.myqcloud.com/avatar.jpg
         thumbnail: https://fushuling-1309926051.cos.ap-shanghai.myqcloud.com/avatar.jpg # has_thumbnail 为 true 时才需要
+      - name: Bmth
+        link: http://www.bmth666.cn/
+        description: 莫听穿林打叶声，何妨吟啸且徐行。
+        avatar: http://www.bmth666.cn/img/favicon.png
+        thumbnail: http://www.bmth666.cn/img/favicon.png # has_thumbnail 为 true 时才需要
 
 - links_category: 好朋友们
   has_thumbnail: false
