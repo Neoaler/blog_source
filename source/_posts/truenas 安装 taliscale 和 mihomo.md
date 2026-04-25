@@ -8,7 +8,7 @@ tags:
 - taliscale
 - mihomo
 title: truenas 安装 taliscale 和 mihomo
-updated: '2026-04-25T19:42:42.568+08:00'
+updated: '2026-04-25T19:45:21.745+08:00'
 ---
 ## taliscale
 
