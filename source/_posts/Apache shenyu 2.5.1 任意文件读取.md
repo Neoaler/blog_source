@@ -5,8 +5,8 @@ categories:
 date: '2026-04-27T09:34:46.204202+08:00'
 tags:
 - apache-shenyu
-title: title
-updated: '2026-04-27T09:34:47.180+08:00'
+title: ' Apache shenyu 2.5.1 任意文件读取'
+updated: '2026-04-27T09:37:07.135+08:00'
 ---
 ## 环境搭建
 
