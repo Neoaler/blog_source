@@ -5,52 +5,63 @@ on:
     branches:
       - main
 
+# 防止并发冲突：新 push 会取消正在排队的 workflow，只跑最新的
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-        deploy_key: ${{ secrets.DEPLOYKEY }}
+      deploy_key: ${{ secrets.DEPLOYKEY }}
     steps:
-    - name: 检查分支
-      uses: actions/checkout@v2
-      with:
-        ref: main
+      # 检查分支
+      - name: 检查分支
+        uses: actions/checkout@v4
+        with:
+          ref: main
 
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.9.0
-      with:
-        ssh-private-key: ${{ secrets.DEPLOYKEY }}
+      # SSH 密钥配置（用于 hexo deploy 推送）
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOYKEY }}
 
-    - name: 安装 Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: "24.14"
+      # 安装 Node.js
+      - name: 安装 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14"
 
-    - name: 安装 Hexo
-      run: |
-        export TZ='Asia/Shanghai'
-        npm install hexo-cli -g
+      # 安装 Hexo CLI
+      - name: 安装 Hexo
+        run: |
+          export TZ='Asia/Shanghai'
+          npm install hexo-cli -g
 
-    - name: 缓存 Hexo
-      uses: actions/cache@v4
-      id: cache
-      with:
-        path: node_modules
-        key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
+      # 缓存 node_modules，加速依赖安装
+      - name: 缓存 Hexo
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: node_modules
+          key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
 
-    - name: 安装依赖
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        npm install --save
+      # 依赖没命中缓存时才安装
+      - name: 安装依赖
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          npm install --save
 
-    - name: Configure Git
-      run: |
-        git config --global user.email "${{secrets.USERNAME}}"
-        git config --global user.name "${{secrets.EMAIL}}"
-        git config --global init.defaultBranch ${{secrets.BRANCH}}
- 
-    - name: 部署
-      run: |
-        hexo g -f -d 
+      # 配置 Git 用户信息（用于 hexo deploy 提交）
+      - name: Configure Git
+        run: |
+          git config --global user.email "${{secrets.USERNAME}}"
+          git config --global user.name "${{secrets.EMAIL}}"
+          git config --global init.defaultBranch ${{secrets.BRANCH}}
 
+      # 生成静态页面并部署（-f 强制重新生成，-d 部署）
+      - name: 部署
+        run: |
+          hexo g -f -d
