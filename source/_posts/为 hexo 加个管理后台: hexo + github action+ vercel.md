@@ -6,7 +6,7 @@ date: '2026-03-14T20:33:37.257006+08:00'
 tags:
 - 管理后台
 title: '为 hexo 加个管理后台: hexo + github action+ vercel'
-updated: '2026-03-14T20:33:37.877+08:00'
+updated: '2026-04-29T12:35:00.345+08:00'
 ---
 写博客的时候发现总是要自己 hexo c g d 三件套，总是觉得有点麻烦，刚好发现 Qexo 终于更新了，很久之前就用过这个框架当 hexo 的后台，但是那时候优化还不够好，不算很好用，刚好现在有这个需求，尝试一下新版，却发现回不去了......
 
@@ -182,3 +182,77 @@ jobs:
 给 Qexo 加完域名之后会报 400 错误，是因为这个域名不在安全域名内，加个环境变量 ALLOWED\_HOSTS ，然后 Redeploy 一下就可以解决啦
 
 ![image](https://img2.eval.moe/image-20260314202848-zgxdh04.png)
+
+## 2026.4.29 更新
+
+优化了一下 workflow，这个是优化后的，解决了 GitHub action 多个同时请求可能会导致失败的问题
+
+```java
+name: 自动部署
+
+on:
+  push:
+    branches:
+      - main
+
+# 防止并发冲突：新 push 会取消正在排队的 workflow，只跑最新的
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      deploy_key: ${{ secrets.DEPLOYKEY }}
+    steps:
+      # 检查分支
+      - name: 检查分支
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      # SSH 密钥配置（用于 hexo deploy 推送）
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOYKEY }}
+
+      # 安装 Node.js
+      - name: 安装 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14"
+
+      # 安装 Hexo CLI
+      - name: 安装 Hexo
+        run: |
+          export TZ='Asia/Shanghai'
+          npm install hexo-cli -g
+
+      # 缓存 node_modules，加速依赖安装
+      - name: 缓存 Hexo
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: node_modules
+          key: ${{runner.OS}}-${{hashFiles('**/package-lock.json')}}
+
+      # 依赖没命中缓存时才安装
+      - name: 安装依赖
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          npm install --save
+
+      # 配置 Git 用户信息（用于 hexo deploy 提交）
+      - name: Configure Git
+        run: |
+          git config --global user.email "${{secrets.USERNAME}}"
+          git config --global user.name "${{secrets.EMAIL}}"
+          git config --global init.defaultBranch ${{secrets.BRANCH}}
+
+      # 生成静态页面并部署（-f 强制重新生成，-d 部署）
+      - name: 部署
+        run: |
+          hexo g -f -d
+```
